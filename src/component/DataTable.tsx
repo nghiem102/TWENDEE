@@ -14,7 +14,11 @@ interface Props {
   fields: TableFieldsType;
 }
 const DataTable: React.FC<Props> = ({ data, fields }) => {
-  console.log(data);
+    let newData = data
+    newData = newData?.sort((a:any,b:any) => {
+        return a.fullName.localeCompare(b.fullName)
+    })
+    console.log(newData)
   const columns = Object.keys(fields).map((item) => ({
     key: item,
     label: fields[item].label,
@@ -37,7 +41,7 @@ const DataTable: React.FC<Props> = ({ data, fields }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data?.map((item: any, index: number) => {
+            {newData?.map((item: any, index: number) => {
               return (
                 <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                   {columns.map(({ key }) => {

@@ -6,6 +6,7 @@ import { TableFieldsType } from "./types/common.js";
 
 function App() {
   const { results } = useSelector((users) => users.users.value);
+  const newdata = results?.map((item:any) =>({...item,fullName:`${item.name.first} ${item.name.last}`}))
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getUsers({page:1,pageSize:10}));
@@ -15,7 +16,7 @@ function App() {
     name: {
       label: "Name",
       renderContent: ({ name }) => (
-        <b>{`${name.title} ${name.first} ${name.last} `}</b>
+        <b>{`${name.title} ${name.first} ${name.last}`}</b>
       ),
     },
     picture: {
@@ -34,7 +35,7 @@ function App() {
 
   return (
     <div className="App">
-      <DataTable data={results} fields={fields} />
+      <DataTable data={newdata} fields={fields} />
     </div>
   );
 }
