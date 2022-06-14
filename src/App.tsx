@@ -6,10 +6,9 @@ import { TableFieldsType } from "./types/common.js";
 
 function App() {
   const { results } = useSelector((users) => users.users.value);
-  const defaultPageSize = 10;
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getUsers());
+    dispatch(getUsers({page:1,pageSize:10}));
   }, []);
 
   const fields: TableFieldsType = {

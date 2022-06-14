@@ -1,10 +1,11 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import axios from 'axios'
 
+
 export const getUsers = createAsyncThunk(
     'getUsers',
-    async () => {
-        const {data} = await axios.get('https://randomuser.me/api/?page=3&results=10')
+    async ({page,pageSize}) => {
+        const {data} = await axios.get(`https://randomuser.me/api/?page=${page}&results=${pageSize}`)
         return data
     }
 )
