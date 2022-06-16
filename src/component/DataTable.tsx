@@ -49,7 +49,7 @@ const DataTable: React.FC<Props> = ({ data, fields }) => {
                     return (
                       <TableCell key={key}>
                         {fields[key].renderContent
-                          ? fields[key].renderContent(item)
+                          ? fields[key].renderContent?.(item)
                           : value}
                       </TableCell>
                     );
